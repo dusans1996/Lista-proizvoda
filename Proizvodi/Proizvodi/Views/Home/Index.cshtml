@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Proizvod>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<br />
+<div class="jumbotron">
+    <h1>Proizvodi</h1>
+</div>
+
+<p>
+    <a asp-controller="Proizvodi" asp-action="Create">Kreiraj novi proizvod</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Naziv
+            </th>
+            <th>
+                Opis
+            </th>
+            <th>
+                Kategorija
+            </th>
+            <th>
+                Proizvodjac
+            </th>
+            <th>
+                Cena
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>
+                    @p.Naziv
+                </td>
+                <td>
+                    @p.Opis
+                </td>
+                <td>
+                    @p.Kategorija
+                </td>
+                <td>
+                    @p.Proizvodjac
+                </td>
+                <td>
+                    @p.Cena
+                </td>
+                <td>
+                    <a asp-controller="Proizvodi" asp-action="Edit" asp-route-id="@p.Id">Promeni</a> |
+                    <a asp-controller="Proizvodi" asp-action="Details" asp-route-id="@p.Id">Detalji</a> |
+                    <a asp-controller="Proizvodi" asp-action="Delete" asp-route-id="@p.Id">Obrisi</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Styles{
+    <style>
+        .jumbotron {
+            padding: 1em;
+        }
+
+            .jumbotron h1 {
+                font-size: 2em;
+            }
+    </style>
+}
